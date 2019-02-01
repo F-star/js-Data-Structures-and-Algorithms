@@ -6,7 +6,7 @@ export const mergeSort = a => {
 
     if (a.length <= 1) return a;
     let mid = Math.floor( a.length / 2 ),
-        left = a.slice(0, mid),
+        left = a.slice(0, mid),    // 这里可以优化，因为这里是开辟了新的内存空间。我们拿 索引传入 merge 就好（merge方法也要修改）。
         right = a.slice(mid);
     
     // 果然 递归 很难理解
