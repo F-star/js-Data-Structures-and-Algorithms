@@ -6,6 +6,7 @@ import { randomArray } from '../util/index.js'
 import { merge, mergeSort } from './merge.js'
 import { partition, quickSort } from './quick.js'
 import { findKthLargest } from './practice/findKthLargest.js';
+import { countingSort, radixSort } from './linearSort.js';
 
 let a, b;
 
@@ -43,3 +44,13 @@ console.log('原数组：', a.toString());
 console.log('排序后：', quickSort(a).toString()); 
 console.log(`第${k}大的数是：`, findKthLargest(b, k))
 console.log(`排序后的第${k}大的数：`, a[a.length - k])
+
+console.log('------- 计数排序 ');
+a = randomArray(8, 10);
+console.log('排序前：', a.toString());
+console.log(countingSort(a));
+
+console.log('------- 基数排序')
+a = randomArray(10, 99999999999);
+console.log('排序前:', a.toString());
+console.log(radixSort(a))
