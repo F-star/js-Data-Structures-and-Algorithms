@@ -1,11 +1,11 @@
+// 二分法的方法，实现求一个数平方根，保留 6 位小数。
+// 暂时保留整数
+
 
 // 【注意】js的浮点数因为精度问题，会有误差。。。建议使用一些库（但这样就掉效率）
 //  10.04985 + 0.00002   // 10.049869999999999
 
-// 二分法的方法，实现求一个数平方根，保留 6 位小数。
-// 暂时保留整数
-
-// 另外，球二分法还可以用 牛顿迭代法。
+// 另外，除了二分法还可以用 牛顿迭代法。
 /**
  * 
  * @param {number} val 被开方数
@@ -26,15 +26,15 @@ export const sqrt = (val, digits = 6)=> {
     // 当区间大小为 2 时，跳出循环。
 
     
-    for (let j = 0; j <= 6; j++) {
+    for (let j = 0; j <= digits; j++) {
 
         let jumpLoop = false;
 
-        console.log('执行')
+        console.count('执行')
         while (low < high - step) {
             // mid 会受到 step 影响。
-            mid = low + Math.floor((high - low) / 2 / step) * step;
-            console.log('这俩加起来会有误差？' ,low, Math.floor((high - low) / 2 / step) * step)
+            mid = low + Math.floor((high - low) / 2 / step) * step;  // 这里的相加会导致误差。。。
+            // console.log('这俩加起来会有误差？' ,low, Math.floor((high - low) / 2 / step) * step)
             console.log(low, mid, high)
             square = mid * mid;
             if (checkSqrtInt(mid, val, step)) {
@@ -77,10 +77,6 @@ export const sqrt = (val, digits = 6)=> {
     }
     return result;
 
-    // 确定正数部分，下面开始确定第一位小数
-
-    // 检查a是否为b的平方根的整数部分。
-    
     function checkSqrtInt(a, b, step) {
         return a * a == b || ( a * a < b && (a + step) * (a + step) > b );
     }
