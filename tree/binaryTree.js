@@ -11,7 +11,7 @@ export function BTree(array) {
 
 BTree.prototype = {
 
-    // 生成完全二叉树。
+    // 生成完全二叉树。(可以看成是二叉树数组表示法转化为链表表示法)
     init(array) {
 
         if (array.length == 0) return;
@@ -91,22 +91,27 @@ BTree.prototype = {
         }
     },
 
-    // 层序遍历（未完成
+    // 层序遍历
     levelOrder() {
+        if (this.root == null) return '';
+        let a = [],
+            left, right;
+        a.push(this.root);
 
-        function r(node) {
-            if (!node) return;
-            // console.log(node.val); 
-            console.log(node.left);
-            console.log(node.right);
-            r(node.left);
+        // 节点入队，指针指向头部元素，如果它有left/right，入队。
+        // 指针后移，继续同样步骤。。。直至指针跑到队列尾部后面去。。。
+        for(let i = 0; i < a.length; i++) {
+            left = a[i].left;
+            if (left) a.push(left);
+
+            right = a[i].right;
+            if (left) a.push(right);
         }
-
+        return a.map(item => item.val).join(',');
     }
-
-    
 }
 
+// 节点构造函数
 function Node(val) {
     this.val = val;
     this.left = null;
