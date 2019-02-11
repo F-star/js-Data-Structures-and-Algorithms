@@ -92,6 +92,48 @@ LinkedList.prototype = {
         this.head = null;
         this.size = 0;
     },
+
+    // 链表反转
+    reverse() {
+        if (this.size <= 1) {
+            return this;
+        }
+
+        let prevP = this.head.next,     // p 的上一个节点。
+            p = prevP.next,             // 当前节点指针。
+            nextP;                      // p 的后一个节点。
+
+        // 容易忘记将 头节点 的next 设置为 null，导致不停循环
+        this.head.next.next = null;
+
+        while (p != null) {
+            nextP = p.next;     
+            p.next = prevP;     // 链表反转
+
+            // p移位。
+            prevP = p;
+            p = nextP;
+
+        }
+        this.head.next = prevP;
+        return this;
+    },
+
+    // 求链表中间节点（不知道 size 的情况。）
+    // 方法：两个指针，一个走两步，一个走一步
+    getMidNode() {
+        if (this.size <= 1) {
+            return this.head.next;
+        }
+        let fastP = this.head.next,
+            slowP = fastP;
+            
+        while (fastP != null && fastP.next != null) {
+            fastP = fastP.next.next;
+            slowP = slowP.next;
+        }
+        return slowP;
+    }
 }
 
 export { 
