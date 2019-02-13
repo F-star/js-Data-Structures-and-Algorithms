@@ -27,28 +27,30 @@ HashTable.prototype = {
         // 当前元素 不为 null，或者 deleted 为 false（其实是 deleted 不存在的情况），查找下一饿元素。
 
         //（1）p 不存在
-        // (2）p存在，且 deleted 为 undefined
+        // (2）p存在，且 deleted 为 false
         // 满足其中一个条件即可继续往下查找
-        while (p != null && (p && p.deleted == undefined)) {
-
-            // if 
+        while ( !( p == null || (p && p.deleted == true) ) ) {
 
             hashVal = (hashVal + 1) % this.n;
             p = this.table[hashVal];   // 因为我们会设置 装载因子，动态扩容，所以绝对会有空位。
         }
-
+        console.log('xxxx', hashVal)
         // 跳出条件： 当前元素为空。。。或者  当前元素不为空，但是 deleted 为 true
 
-        // 找到空位，存起来。
-        this.table[hashVal] = { data };   // 不直接保存data，是因为还需要一个 deleted 字段，要标记一个已删除元素。
+        // 找到空位（或deleted为true的空位），存起来。
+        this.table[hashVal] = { 
+            data,
+            deleted: false,
+        };   // 不直接保存data，是因为还需要一个 deleted 字段，要标记一个已删除元素。
         this.size++;
+        return true;
     },
 
     // TODO 查找（有问题，中间如果有 deleted 的就会找不到）
     // find 和 put不同：find 需要跳过 deleted 为 true 的数据，而添加数据不用，直接覆盖
     find(id) {
         let hashVal = this.hash(id),
-            p = this.table[hashVal];
+            p = this.table[hashVal];   
 
         while (p != null) {
             if (p.data && p.data.id == id) {
@@ -66,7 +68,7 @@ HashTable.prototype = {
         let hashVal = this.hash(id),
             p = this.table[hashVal];
 
-        while (p != null && (p && p.deleted == undefined)) {
+        while ( !( p == null || (p && p.deleted == true) )) {
             if (p.data.id == id) {
                 // 找到了，删除data，并设置 deleted 为 true'，并返回 true 表示移除成功
                 p.data = null;
