@@ -1,12 +1,13 @@
 
 
 // import {insertionSort} from './insertion.js';
-import { selectionSort } from './selection.js';
+import { selectionSort } from './selectionSort.js';
 import { randomArray } from '../util/index.js'
-import { merge, mergeSort } from './merge.js'
-import { partition, quickSort } from './quick.js'
+import { merge, mergeSort } from './mergeSort.js'
+import { partition, quickSort } from './quickSort.js'
 import { findKthLargest } from './practice/findKthLargest.js';
 import { countingSort, radixSort } from './linearSort.js';
+import { heapSort } from './heapSort.js';
 
 let a, b;
 
@@ -54,3 +55,11 @@ console.log('------- 基数排序')
 a = randomArray(10, 99999999999);
 console.log('排序前:', a.toString());
 console.log(radixSort(a))
+
+
+console.log('------- 堆排序')
+a = randomArray(10);
+// a = [56, 96, 18, 8, 72, 79, 18, 23, 43, 13]
+console.log('排序前:', a.toString());
+console.log(heapSort(a).toString());
+// TODO 检验一个数组是否为堆的方法。
