@@ -13,10 +13,8 @@ export const BF = (s, pattern) => {
     const m = pattern.length,
         n = s.length;
     if (n < m) return -1;
-    // 。。。
+
     for (let i = 0, len = n - m + 1; i < len; i++) {
-        
-   
         for (let j = 0; j < m; j++) {
             if (pattern[j] !== s[i + j]) {
                 break;   // 发现不匹配，结束当前循环
