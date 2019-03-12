@@ -8,7 +8,7 @@ import { BF } from "./BF.js";
 
 export const RK = (s, pattern) => {
     const m = pattern.length,
-    n = s.length;
+        n = s.length;
     if (n.length == 0) return 0;
     if (n < m) return -1;
     if (m.length == 1) return BF(s, pattern);    // 只有模式串一个字符，就别搞这么复杂。

@@ -77,6 +77,18 @@ LinkedList.prototype = {
         return this.toString();
     },
 
+    // 待测试
+    get(index) {
+        if (index > this.size) return null;
+
+        let p = this.head;
+        for (let i = 0; i < index; i++) {
+            p = p.next;
+        } 
+
+        return p.data;
+    },
+
     toString() {
         let p = this.head,
             array = [];
