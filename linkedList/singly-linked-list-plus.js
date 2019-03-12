@@ -79,14 +79,14 @@ LinkedList.prototype = {
 
     // 待测试
     get(index) {
-        if (index > this.size) return null;
+        if (index >= this.size) return null;
 
-        let p = this.head;
+        let p = this.head.next;
         for (let i = 0; i < index; i++) {
             p = p.next;
         } 
 
-        return p.data;
+        return p.val;
     },
 
     toString() {
