@@ -1,4 +1,5 @@
 import { LinkedList } from "../linkedList/singly-linked-list-plus.js";
+import { printPrev } from "./dfs.js";
 
 /**
  * 无向图。
@@ -48,28 +49,11 @@ Graph.prototype.bfs = function(s, t) {
             if (!visited[n]) {
                 prev[n] = m;
                 if (n == t) {
-                    console.log('???')
-                    print();
+                    printPrev(prev, s, t);
                     return;
                 }
                 queue.push(n);
             }
         }
     }
-
-    function print() {
-        // 根据 prev 获取路径。
-        let n = t;
-        let a = [];
-
-        // TODO 可以考虑写成递归。
-        while (n != s) {
-            a.push(prev[n]);
-            n = prev[n];
-        }
-        a.reverse()
-        a.push(t);
-        console.log(a)
-    }
-
 }
