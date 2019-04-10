@@ -1,5 +1,6 @@
 import { BTree } from "./binaryTree.js";
 import { BSTree } from "./binarySearchTree.js";
+import { Trie } from "./trie.js";
 
 
 let a;
@@ -53,6 +54,15 @@ console.log('二叉树移除节点 2：', bSTree.remove(2))
 console.log('二叉树移除节点 20：', bSTree.remove(20))
 console.log(bSTree);
 
+console.log('---------------------------')
+console.log('trie 树测试');
+let trie = new Trie();
 
+['hi', 'her', 'he', 'hello', 'how', 'see', 'so'].forEach(str => {
+     trie.insert(str);
+})
+
+console.log( trie.find('see') );
+console.log( trie.find('big') );
 
 
