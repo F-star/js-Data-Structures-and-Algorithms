@@ -8,7 +8,7 @@
  * 最多能选出多少个区间
  */
 
-export const intervalCover = (intervals, min, max) => {
+export const intervalCover = (intervals) => {
     // 1. 区间左端点排序
     intervals.sort((a, b) => a[0] - b[0])
     // console.log(intervals)
