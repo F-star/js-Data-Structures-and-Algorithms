@@ -7,8 +7,8 @@ export const quickSort = a => {
     return a;
 }
 
-// 递归方法
 /**
+ * 递归函数
  * 参数意义同 partition 方法。
  */
 function quickSortC(a, q, r) {
@@ -21,8 +21,8 @@ function quickSortC(a, q, r) {
     quickSortC(a, p + 1, r);
 }
 
-// 随机选择一个元素作为 pivot，进行分区，最后返回其下标
 /**
+ * 随机选择一个元素作为 pivot，进行原地分区，最后返回其下标
  * 
  * @param {Array} a 要排序的数组
  * @param {number} p 起始索引
@@ -30,9 +30,7 @@ function quickSortC(a, q, r) {
  * @return 基准的索引值，用于后续的递归。
  */
 export function partition(a, p, r) {
-    // 为了减少空间复杂度，我们使用 原地排序。
-
-    // pivot 默认取最后一个
+    // pivot 默认取最后一个，如果取得不是最后一个，就和最后一个交换位置。
     let pivot = a[r],
         tmp,
         i = p;     // 已排序区间的末尾索引。
