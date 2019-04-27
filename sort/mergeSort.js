@@ -3,38 +3,54 @@
  */
 
 export const mergeSort = a => {
-
-    if (a.length <= 1) return a;
-    let mid = Math.floor( a.length / 2 ),
-        left = a.slice(0, mid),    // 这里可以优化，因为这里是开辟了新的内存空间。我们拿 索引传入 merge 就好（merge方法也要修改）。
-        right = a.slice(mid);
-    
-    // 果然 递归 很难理解
-    return merge(mergeSort(left), mergeSort(right));
+    mergeSortC(a, 0, a.length - 1)
+    return a;
 }
 
+const mergeSortC = (a, p, r) => {
+    if (p >= r) return
+    let q = Math.floor( (p + r) / 2 ); // 这样取中间值，right.length >= left.length
+    mergeSortC(a, p, q);
+    mergeSortC(a, q+1, r);
+    merge(a, p, q, r)  // p->q （q+1）->r 区域的两个数组合并。
+}
 
 /**
  * merge方法（将两个有序数组合并成一个有序数组）
- * 维基百科的实现 使用了 shift()，感觉性能会不好。
  */
-export function merge(a, b) {
-    let i = 0,
-        j = 0,
-        m = [];    // 合并的数组
+export function merge(a, p, q, r) {
+    let i = p,
+        j = q+1,
+        m = new Array(r - q);    // 保存合并数据的数组
     
-    while (i < a.length && j < b.length) {
-        if (a[i] <= b[j]) {
-            m.push(a[i]);
+    let k = 0;
+    while (i <= q && j <= r) {
+        if (a[i] <= a[j]) {
+            m[k] = a[i];
             i++;
         } else {
-            m.push(b[j]);
+            m[k] = a[j]
             j++;
         }
+        k++;
     }
 
-    // 把还有剩余的 a（或b）放入到 m 末尾（a 和 b必然有一个为空，所以不用担心顺序不对）
-    m = m.concat(b.slice(j), a.slice(i));
+    // 首先找出两个数组中，有剩余的元素的数组。
+    // 然后将剩余元素依次放入数组 m。
+    let start = i,
+        end = q;
+    if (j <= r) {
+        start = j;
+        end = r;
+    }
 
-    return m;
+    while (start <= end) {
+        m[k] = a[start];
+        start++;
+        k++;
+    }
+    // m的数据拷贝到 a。
+    for(let i = p; i <= r; i++) {
+        a[i] = m[i-p];
+    }
 }

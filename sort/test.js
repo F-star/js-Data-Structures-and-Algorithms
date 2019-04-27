@@ -17,13 +17,13 @@ a = randomArray(20);
 console.log('起始值：', a.toString());
 console.log('排序后：', selectionSort(a).toString() )
 
-// merge 方法测试
-console.log('------- 并归方法的 merge 方法测试')
+// merge 方法测试（这里的用例只适用于 mergeSort2.js 文件的 merge 方法）
+/* console.log('------- 并归方法的 merge 方法测试')
 a = [1, 2, 3, 4, 51, 84];
 b = [9, 10, 11, 12, 13];
 console.log('a: ', a.toString())
 console.log('b: ', b.toString())
-console.log('merge方法合并后', merge(a, b).toString())
+console.log('merge方法合并后', merge(a, b).toString()) */
 
 // 归并排序
 console.log('------- 归并排序')
