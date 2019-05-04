@@ -58,7 +58,8 @@ Heap.prototype = {
 
         // 从上往下堆化。
         while (true) {
-            if (i * 2 <= this.count && this.a[i*2] > this.a[maxPos]) maxPos = i * 2;
+            // maxPos 指的是 a[i]节点 和 它的两个子节点 中值最大的节点的 “下标”。
+            if (i * 2 <= this.count && this.a[i*2] > this.a[maxPos]) maxPos = i * 2;  
             if (i * 2 + 1 <= this.count && this.a[i*2 + 1] > this.a[maxPos]) maxPos = i * 2 + 1;
     
             if (maxPos == i) {

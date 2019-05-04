@@ -100,12 +100,12 @@ BTree.prototype = {
 
         // 节点入队，指针指向头部元素，如果它有left/right，入队。
         // 指针后移，继续同样步骤。。。直至指针跑到队列尾部后面去。。。
-        for(let i = 0; i < a.length; i++) {
+        for(let i = 0; i < a.length; i++) {   // 需要注意的是，数组 a 的长度是动态变化的（不停变长）
             left = a[i].left;
             if (left) a.push(left);
 
             right = a[i].right;
-            if (left) a.push(right);
+            if (right) a.push(right);
         }
         return a.map(item => item.val).join(',');
     }
