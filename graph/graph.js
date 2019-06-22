@@ -57,3 +57,9 @@ Graph.prototype.bfs = function(s, t) {
         }
     }
 }
+
+Graph.prototype.toString = function() {
+    for (let i = 0; i < this.v; i++) {
+        console.log({i, to: this.adj[i].toString() });
+    }
+}
